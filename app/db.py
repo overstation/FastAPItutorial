@@ -1,7 +1,7 @@
 from collections.abc import AsyncGenerator
 import uuid
 # from sqlalchemy import create_engine
-from sqlalchemy import Column, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, String, Text, DateTime, ForeignKey, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, relationship
@@ -21,7 +21,7 @@ class Post(Base):
     __tablename__ = "posts"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("user.id"), nullable=False)
     caption = Column(Text)
     url = Column(String, nullable=False)
     file_type = Column(String, nullable=False)
